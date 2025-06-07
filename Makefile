@@ -10,9 +10,6 @@ install-open_jtalk:
 clean-emsdk:
 	rm -rf tools/emsdk/
 
-clean-hts_engine_API:
-	rm -rf tools/hts_engine_API/
-
 clean-open_jtalk:
 	rm -rf tools/open_jtalk/
 

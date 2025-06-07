@@ -39,7 +39,6 @@ open_jtalk.js
 
 ```sh
 make install-emsdk
-make install-hts_engine_API
 make install-open_jtalk
 ```
 
