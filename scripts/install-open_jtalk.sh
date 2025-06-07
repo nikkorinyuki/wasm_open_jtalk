@@ -19,13 +19,14 @@ cd "$OPEN_JTALK_DIR/src/build"
 source "$EMSDK_DIR/emsdk_env.sh"
 
 # libopenjtalk.aをsrc/buildに作成する
-emcmake cmake -DCMAKE_BUILD_TYPE=Release
+emcmake cmake .. -DCMAKE_BUILD_TYPE=Release
 emmake make
 
 cd $HERE/..
 # libopenjtalk.aからwasm及びjsファイルを作成
 # src/bin/open_jtalk.cをビルド
-emcc "$OPEN_JTALK_DIR/src/bin/open_jtalk.c" \
+emcc "$OPEN_JTALK_DIR/src/bin/open_jtalk.cpp" \
+  -std=c++17 \
   -O2 \
   -lnodefs.js \
   "$OPEN_JTALK_DIR/src/build/libopenjtalk.a" \
@@ -43,5 +44,8 @@ emcc "$OPEN_JTALK_DIR/src/bin/open_jtalk.c" \
 	-I $OPEN_JTALK_DIR/src/text2mecab \
   -o "$JS_DIR/open_jtalk.js" \
   -s ALLOW_MEMORY_GROWTH=1 \
-  -s NODERAWFS=1
+  -s NODERAWFS=1 \
+  -lembind \
+  -sEXPORT_ES6=1 \
+  --emit-tsd open_jtalk.d.ts
   # --embed-file "etc" \
