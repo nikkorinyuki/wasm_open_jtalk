@@ -1,0 +1,44 @@
+name: Build and Release Open JTalk
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up dependencies
+        run: sudo apt-get update && sudo apt-get install -y make curl git
+
+      - name: Run make install-emsdk
+        run: make install-emsdk
+
+      - name: Run make install-open_jtalk
+        run: make install-open_jtalk
+
+      - name: Archive built files
+        run: |
+          mkdir artifacts
+          cp js/open_jtalk.* artifacts/
+
+      - name: Get version or commit hash
+        id: version
+        run: echo "tag=v-$(date +%Y%m%d)-${{ github.sha }}" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: Release ${{ steps.version.outputs.tag }}
+          files: |
+            artifacts/open_jtalk.d.ts
+            artifacts/open_jtalk.js
+            artifacts/open_jtalk.wasm
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
