@@ -16,6 +16,12 @@ jobs:
       - name: Set up dependencies
         run: sudo apt-get update && sudo apt-get install -y make curl git
 
+      - name: Clone open_jtalk
+        run: |
+          cd tools
+          git clone https://github.com/nikkorinyuki/open_jtalk
+          cd ../
+
       - name: Run make install-emsdk
         run: make install-emsdk
 
