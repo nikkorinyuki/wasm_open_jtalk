@@ -20,12 +20,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/hrhr49/wasm_open_jtalk.git"
+    "url": "git+ssh://git@github.com/nikkorinyuki/wasm_open_jtalk.git"
   },
-  "author": "hrhr49 <hiro49410@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hrhr49/wasm_open_jtalk/issues"
+    "url": "https://github.com/nikkorinyuki/wasm_open_jtalk/issues"
   },
-  "homepage": "https://github.com/hrhr49/wasm_open_jtalk#readme"
+  "homepage": "https://github.com/nikkorinyuki/wasm_open_jtalk#readme"
 }
