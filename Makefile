@@ -13,3 +13,4 @@ clean-open_jtalk:
 clean:
 	make clean-emsdk
 	make clean-open_jtalk
+	rm -rf js
